@@ -9,7 +9,7 @@ const fetchData = async (
   accessToken: string
 ): Promise<TextStream | undefined> => {
   url = env.NEXT_PUBLIC_BACKEND_URL + url;
-
+  console.log("jack fetchData", url);
   const response = await fetch(url, {
     method: "POST",
     cache: "no-cache",

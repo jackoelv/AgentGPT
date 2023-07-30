@@ -48,7 +48,8 @@ function getHeaders(session?: Session) {
 }
 
 function getUrl(url: string) {
-  return env.NEXT_PUBLIC_BACKEND_URL + url;
+  	console.log("jack getUrl", env.NEXT_PUBLIC_BACKEND_URL, url);
+	return env.NEXT_PUBLIC_BACKEND_URL + url;
 }
 export async function withRetries(
   fn: () => Promise<void>,

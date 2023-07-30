@@ -39,7 +39,7 @@ class Settings(BaseSettings):
     with environment variables.
     """
 
-    host: str = "127.0.0.1"
+    host: str = "0.0.0.0"
     port: int = 8000
 
     # Quantity of workers for uvicorn
@@ -67,7 +67,7 @@ class Settings(BaseSettings):
 
     # Variables for the database
     db_host: str = "localhost"
-    db_port: int = 3307
+    db_port: int = 3306
     db_user: str = "reworkd_platform"
     db_pass: str = "reworkd_platform"
     db_base: str = "reworkd_platform"
