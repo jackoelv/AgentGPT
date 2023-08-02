@@ -9,13 +9,16 @@ RUN apt-get update && apt-get install -y \
   openjdk-11-jdk \
   && rm -rf /var/lib/apt/lists/*
 
-RUN pip install poetry==1.4.2
+RUN pip install -i https://mirrors.aliyun.com/pypi/simple/ poetry==1.4.2
 
 # Configuring poetry
+# RUN poetry config --global repositories.ali https://mirrors.aliyun.com/pypi/simple/
+
 RUN poetry config virtualenvs.create false
 
 # Copying requirements of a project
 COPY pyproject.toml /app/src/
+COPY openai-0.27.8 /app/openai-0.27.8
 WORKDIR /app/src
 
 # Installing requirements

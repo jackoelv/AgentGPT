@@ -1,6 +1,10 @@
 import { isValidKey, validKeyErrorMessage } from "../helpers.js";
 import { RUN_OPTION_QUESTION } from "./sharedQuestions.js";
 import fetch from "node-fetch";
+//PROXY_ADD for localhost proxy here.
+const { HttpsProxyAgent } = await import('https-proxy-agent');
+const proxy = "http://127.0.0.1:7890";
+const agent = new HttpsProxyAgent(proxy);
 
 export const newEnvQuestions = [
     RUN_OPTION_QUESTION,
@@ -21,6 +25,7 @@ export const newEnvQuestions = [
                 headers: {
                     "Authorization": `Bearer ${apikey}`,
                 },
+                agent: agent,
             });
             if(!response.ok) {
                 return validKeyErrorMessage
@@ -40,7 +45,6 @@ export const newEnvQuestions = [
             if(!isValidKey(apikey, /^[a-zA-Z0-9]{40}$/)) {
                 return validKeyErrorMessage
             }
-
             const endpoint = "https://google.serper.dev/search"
             const response = await fetch(endpoint, {
                 method: 'POST',
@@ -48,6 +52,7 @@ export const newEnvQuestions = [
                     "X-API-KEY": apikey,
                     "Content-Type": "application/json",
                 },
+                agent: agent,
                 body: JSON.stringify({
                     "q": "apple inc"
                 }),
@@ -70,12 +75,12 @@ export const newEnvQuestions = [
             if(!isValidKey(apikey, /^r8_[a-zA-Z0-9]{37}$/)) {
                 return validKeyErrorMessage
             }
-
             const endpoint = "https://api.replicate.com/v1/models/replicate/hello-world"
             const response = await fetch(endpoint, {
                 headers: {
                     "Authorization": `Token ${apikey}`,
                 },
+                agent: agent,
             });
             if(!response.ok) {
                 return validKeyErrorMessage

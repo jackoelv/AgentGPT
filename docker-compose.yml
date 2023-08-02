@@ -33,6 +33,7 @@ services:
       REWORKD_PLATFORM_DB_USER: "reworkd_platform"
       REWORKD_PLATFORM_DB_PASS: "reworkd_platform"
       REWORKD_PLATFORM_DB_BASE: "reworkd_platform"
+      http_proxy: "http://host.docker.internal:7890" # PROXY_ADD: For Windows only. If you are running on a linux server, you should set the address like http://172.18.0.1:7890 as your docker gateway address which is the localhost ip for docker.
     depends_on:
       - db
 
